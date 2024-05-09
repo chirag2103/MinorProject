@@ -28,7 +28,7 @@ const SSHTerminal: React.FC<SSHTerminalProps> = ({ server, onClose }) => {
   const socketRef = useRef<Socket | null>(null); // Define the socketRef with SocketIOClient.Socket type
 
   useEffect(() => {
-    socketRef.current = io('http://localhost:3001'); // Initialize the socket connection
+    socketRef.current = io('http://localhost:4000'); // Initialize the socket connection
 
     socketRef.current.on('output', (data: string) => {
       const cleanData = data.replace(ansiRegex(), '');

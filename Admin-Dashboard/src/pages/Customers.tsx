@@ -1,9 +1,37 @@
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  ChangeEvent,
+  FormEvent,
+  KeyboardEvent,
+} from 'react';
 import { BsSearch } from 'react-icons/bs';
 import AdminSidebar from '../components/AdminSidebar';
 import { BarChart1, LineChart, PieChart } from '../components/Charts';
 import { FaRegBell } from 'react-icons/fa';
 import userImg from '../assets/userpic.png';
+import io, { Socket } from 'socket.io-client';
 const Customers = () => {
+  useEffect(() => {
+    const socket = io('http://localhost:4000');
+    socket.on('connect', () => {
+      console.log('Connected to server');
+    });
+
+    socket.on('server-details', (data) => {
+      console.log(typeof data);
+      console.log('Received server details:', data);
+    });
+
+    socket.on('error', (error) => {
+      console.error('Error:', error.message);
+    });
+
+    socket.on('disconnect', () => {
+      console.log('Disconnected from server');
+    });
+  }, []);
   const months = [
     'January',
     'February',
@@ -55,6 +83,7 @@ const Customers = () => {
         </div>
         <div className='line-container'>
           <div className='line-chart'>
+            <h2>No. of IP Address</h2>
             <LineChart
               data={[
                 200, 444, 444, 556, 778, 455, 990, 1444, 256, 447, 1000, 1200,

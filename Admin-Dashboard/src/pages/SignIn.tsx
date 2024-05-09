@@ -1,4 +1,4 @@
-import { useState, FormEvent } from 'react';
+import { useState, FormEvent, useEffect } from 'react';
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import '../styles/signin.scss';
 import { useNavigate } from 'react-router-dom';
@@ -7,6 +7,17 @@ export default function SignIn() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    // Check if the user has a valid token
+    const token = localStorage.getItem('token');
+    console.log(localStorage);
+    if (token) {
+      setIsLoggedIn(true);
+      navigate('/admin/dashboard');
+    }
+  }, []);
 
   const handleLogin = (event: FormEvent) => {
     event.preventDefault();

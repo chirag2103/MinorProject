@@ -51,13 +51,13 @@
       background-color: white;
       border-radius: 10px;
     }
-    // .line-chart {
-    //   width: 100%;
-    //   padding: 1rem 3rem;
-    //   > h2 {
-    //     @include heading;
-    //     margin: 1rem 0 2rem 0.25rem;
-    //   }
-    // }
+    .line-chart {
+      // width: 100%;
+      padding: 1rem 3rem;
+      > h2 {
+        @include heading;
+        margin: 1rem 0 2rem 0.25rem;
+      }
+    }
   }
 }

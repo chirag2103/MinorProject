@@ -27,7 +27,7 @@ const Transaction: React.FC = () => {
 
   const fetchServers = async (): Promise<void> => {
     try {
-      const response = await fetch('http://localhost:3001/api/servers');
+      const response = await fetch('http://localhost:4000/api/servers');
       const data: Server[] = await response.json();
       setServers(data);
     } catch (error) {
@@ -40,7 +40,7 @@ const Transaction: React.FC = () => {
   ): Promise<void> => {
     event.preventDefault();
     try {
-      const response = await fetch('http://localhost:3001/api/servers', {
+      const response = await fetch('http://localhost:4000/api/servers', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -71,7 +71,7 @@ const Transaction: React.FC = () => {
 
   const sendDataToServer = async (server: Server): Promise<void> => {
     try {
-      const response = await fetch('http://localhost:3001/api/send-data', {
+      const response = await fetch('http://localhost:4000/api/send-data', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
